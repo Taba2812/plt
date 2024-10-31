@@ -15,3 +15,12 @@ class TestPigLatin(unittest.TestCase):
         translator.get_phrase()
         translation = translator.translate()
         self.assertEqual(translation, "nil")
+
+    def test_plt_word_starting_with_vowel(self):
+        translators = [PigLatin("any"), PigLatin("apple"), PigLatin("ask")]
+        for translator in translators:
+            translator.get_phrase()
+
+        self.assertEqual(translators[0].translate(), "anynay")
+        self.assertEqual(translators[1].translate(), "appleyay")
+        self.assertEqual(translators[2].translate(), "askay")
