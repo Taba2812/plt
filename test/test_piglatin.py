@@ -35,12 +35,23 @@ class TestPigLatin(unittest.TestCase):
         translator.get_phrase()
         self.assertEqual(translator.translate(), "ownknay")
 
-# ### User Story #5 -- Translating a Word Starting with More Consonants
-# The input phrase can be a single word starting with more consonants. In that case, the translator applies the following translation rule:
-# * Remove the consonants from the beginning of the word and add them to the end of the word. Finally, append “ay” to the end of the resulting word.
-#
-# **Requirement:**
-# * Implement `PigLatinTranslator.translate(self) -> str` to let the translator translate a word starting with more consonants.
-#
-# **Example:**
-# * The translation of “known” is “ownknay”.
+    def test_plt_phrase_containing_more_words(self):
+        translators = [PigLatin("hello world"), PigLatin("well-being")]
+        for translator in translators:
+            translator.get_phrase()
+
+        self.assertEqual(translators[0].translate(), "ellohay orldway")
+        self.assertEqual(translators[1].translate(), "ellway-eingbay")
+
+"""
+### User Story #6 -- Translating a Phrase Containing More Words
+The input phrase can contain more words (separated by white spaces). In that case, the translator applies the translation rules (reported in User Stories 3-5) to the single words. Moreover, for composite words (those separated by a “-”), the translation rules apply to the single words.
+
+**Requirement:** 
+* Implement `PigLatinTranslator.translate(self) -> str` to let the translator translate a phrase containing more words, as well as composite words. 
+
+**Examples:** 
+* The translation of “hello world” is “ellohay orldway”. 
+* The translation of “well-being” is “ellway-eingbay”.
+
+"""
